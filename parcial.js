@@ -61,20 +61,22 @@ const Cargar = () => {
         nombre: '',
         duracion:''
     }]
+    let seguir
     do{        
         nombre = prompt('Ingrese Nombre de Disco')        
         autor = prompt('Ingrese nombre del Autor')               
-        
-    }while(!isNaN(nombre) && !isNaN(autor))
+        console.log(nombre)
+    }while((!isNaN(nombre) ||    !isNaN(autor)))
+    console.log(autor,nombre)
 
     do{
         canciones.nombre = prompt('Ingrese nombre de canción');
         canciones.duracion = prompt('Ingrese Duración');
         song.push(canciones)
-        let seguir = confirm('Desea seguir ingresando canciones al disco?')
+        seguir = confirm('Desea seguir ingresando canciones al disco?')
         console.log(song)
         
-    }while(isNaN(canciones.nombre) && !isNaN(canciones.duracion) && seguir == true)
+    }while(!isNaN(canciones.nombre) && isNaN(canciones.duracion) && seguir == true)
 
 
     
