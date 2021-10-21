@@ -59,9 +59,13 @@ const Cargar = () => {
     let nombreDisco;    
     let autor;
     let song = []    
-    let seguir;
-    
-    
+    let seguir = true;
+    let pistas = {
+        nombre: '',
+        duracion : ''
+    }
+    let nom;
+    let tiempo = 0
     do{ 
         nombreDisco = prompt('Ingrese Nombre de Disco')        
         autor = prompt('Ingrese nombre del Autor')               
@@ -70,19 +74,25 @@ const Cargar = () => {
     
     console.log(autor,nombreDisco)
 
-    do{
-        let canciones = {
-            nombre : '',
-            duracion : 0
-        }    
-        canciones.nombre = prompt('Ingrese nombre de canción');
-        canciones.duracion = parseInt(prompt('Ingrese Duración'));
-        console.log(canciones)
-        song.push(canciones)
-        seguir = confirm('Desea seguir ingresando canciones al disco?')
-        console.log(song,seguir)
+    do{        
+        nom = prompt('Ingrese nombre de canción');
+        tiempo = parseInt(prompt('Ingrese Duración'));
         
-    }while(!isNaN(canciones.nombre) && seguir !== false)
+        pistas.nombre = nom
+        pistas.duracion = tiempo        
+        console.log(song)
+        console.log(pistas)
+        
+        if(!isNaN(nom) || isNaN(tiempo)){
+            alert('uno de los valores ingresados es incorrecto')
+        }else{
+            seguir = confirm('Desea seguir ingresando canciones al disco?')
+        }
+        
+    }while(!isNaN(nom) || isNaN(tiempo) || seguir !== false)
+
+    
+
 
     
 
