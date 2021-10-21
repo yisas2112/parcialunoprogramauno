@@ -60,10 +60,7 @@ const Cargar = () => {
     let autor;
     let song = []    
     let seguir = true;
-    let pistas = {
-        nombre: '',
-        duracion : ''
-    }
+    
     let nom;
     let tiempo = 0
     do{ 
@@ -74,14 +71,19 @@ const Cargar = () => {
     
     console.log(autor,nombreDisco)
 
-    do{        
+    do{    
+        let pistas = {
+            nombre: '',
+            duracion : ''
+        }    
         nom = prompt('Ingrese nombre de canción');
         tiempo = parseInt(prompt('Ingrese Duración'));
         
         pistas.nombre = nom
         pistas.duracion = tiempo        
+        console.log(song)        
+        song.push(pistas)
         console.log(song)
-        console.log(pistas)
         
         if(!isNaN(nom) || isNaN(tiempo)){
             alert('uno de los valores ingresados es incorrecto')
@@ -90,16 +92,6 @@ const Cargar = () => {
         }
         
     }while(!isNaN(nom) || isNaN(tiempo) || seguir !== false)
-
-    
-
-
-    
-
-    
-
-    
-    
 };
 
 // Función Mostrar:
