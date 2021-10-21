@@ -38,8 +38,10 @@
 // };
 
 class Discos {
-    constructor(id,disco,autor,duracion){
-        this.id = id;
+
+    static id = 0;
+    constructor(disco,autor,duracion){
+        Discos.id++; 
         this.disco = disco;
         this.autor = autor;
         this.duracion = duracion;
@@ -54,31 +56,39 @@ let discos = [];
 // Función Cargar:
 const Cargar = () => {
     // Cositas:
-    let nombre;    
+    let nombreDisco;    
     let autor;
-    let song = []
-    let canciones=[{
-        nombre: '',
-        duracion:''
-    }]
-    let seguir
-    do{        
-        nombre = prompt('Ingrese Nombre de Disco')        
+    let song = []    
+    let seguir;
+    
+    
+    do{ 
+        nombreDisco = prompt('Ingrese Nombre de Disco')        
         autor = prompt('Ingrese nombre del Autor')               
-        console.log(nombre)
-    }while((!isNaN(nombre) ||    !isNaN(autor)))
-    console.log(autor,nombre)
+    }while((!isNaN(nombreDisco) || !isNaN(autor)))
+        
+    
+    console.log(autor,nombreDisco)
 
     do{
+        let canciones = {
+            nombre : '',
+            duracion : 0
+        }    
         canciones.nombre = prompt('Ingrese nombre de canción');
-        canciones.duracion = prompt('Ingrese Duración');
+        canciones.duracion = parseInt(prompt('Ingrese Duración'));
+        console.log(canciones)
         song.push(canciones)
         seguir = confirm('Desea seguir ingresando canciones al disco?')
-        console.log(song)
+        console.log(song,seguir)
         
-    }while(!isNaN(canciones.nombre) && isNaN(canciones.duracion) && seguir == true)
+    }while(!isNaN(canciones.nombre) && seguir !== false)
 
+    
 
+    
+
+    
     
 };
 
