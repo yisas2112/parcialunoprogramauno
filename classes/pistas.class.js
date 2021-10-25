@@ -1,4 +1,5 @@
 class Pistas{
+    #pistas =[]
     #nombre = '';
     #duracion = 0;
 
@@ -7,7 +8,7 @@ class Pistas{
 
     }
 
-    establecerPita(){
+    establecerPistas(){
         do{    
                 
             this.nombre = prompt('Ingrese nombre de canción');
@@ -15,10 +16,16 @@ class Pistas{
 
             if(!isNaN(nom) || isNaN(tiempo)){
                 alert('uno de los valores ingresados es incorrecto')
+            }else{
+                this.#pistas.push(this.#nombre,this.#duracion)
             }
             
         }while(!isNaN(nom) || isNaN(tiempo))
     };
+
+    getPistas(){
+        return 
+    }
 
 
 }

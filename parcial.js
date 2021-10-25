@@ -50,8 +50,7 @@ const Cargar = () => {
     let song = []   
     let seguir = true;    
     let nom;
-    let tiempo = 0
-    let pistas = new pistas
+    let tiempo = 0    
     do{ 
         nombreDisco = prompt('Ingrese Nombre de Disco');
         autor = prompt('Ingrese nombre del Autor');    
@@ -60,9 +59,14 @@ const Cargar = () => {
             alert('uno de los valores ingresados es incorrecto')
         }
     }while((!isNaN(nombreDisco) || !isNaN(autor)))
+
+    let disco = new Discos(nombreDisco, autor)
+    disco.establecerPistas();
+
+    console.log(disco)
         
     
-    console.log(autor,nombreDisco)
+    
 
     // do{    
     
