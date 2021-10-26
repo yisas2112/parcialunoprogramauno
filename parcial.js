@@ -62,6 +62,7 @@ const Cargar = () => {
 
     let disco = new Discos(nombreDisco, autor)
     disco.establecerPistas();
+    discos = disco.GetPistas()
 
     console.log(disco)
         
@@ -87,8 +88,11 @@ const Cargar = () => {
 const Mostrar = () => {
     // Variable para ir armando la cadena:
     let html = '';
-
+    console.log(discos)
     // Cositas:
+    discos.map((e)=>{
+        html = `${e}`
+    })
 
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá
