@@ -47,52 +47,60 @@ const Cargar = () => {
     // Cositas:
     let nombreDisco;    
     let autor;
-    let song = []   
-    let seguir = true;    
-    let nom;
-    let tiempo = 0    
+    let flag = false
+    let id;  
+    let mensaje;
+    let existe = false;
     do{ 
+        if(flag){
+            mensaje ='uno de los valores ingresados es incorrecto'
+            alert(mensaje)
+        }
+        do{
+            id = parseInt(prompt('Ingrese Código del Disco'))
+            for(let disco of discos){
+                console.log(disco)
+                if(disco.id == id){                
+                    mensaje = 'El código único ingresado ya existe'
+                    existe = true
+                    alert(mensaje)
+                }
+                existe = false
+            }
+            if(id < 1 || id > 999){                    
+                mensaje = 'El código debe estar entre 1 y 999'
+                flag = true
+                alert(mensaje)
+            }else{
+                
+            }   
+        }while(existe == true || flag == true)
+
         nombreDisco = prompt('Ingrese Nombre de Disco');
         autor = prompt('Ingrese nombre del Autor');    
         
-        if(!isNaN(nombreDisco) || !isNaN(autor)){
-            alert('uno de los valores ingresados es incorrecto')
-        }
-    }while((!isNaN(nombreDisco) || !isNaN(autor)))
+        flag = true        
+    }while((!isNaN(nombreDisco) || !isNaN(autor)) || isNaN(id))
+    
 
-    let disco = new Discos(nombreDisco, autor)
+    let disco = new Discos(id, nombreDisco, autor)
     disco.establecerPistas();
-    discos = disco.GetPistas()
 
-    console.log(disco)
-        
-    
+    discos.push(disco)
     
 
-    // do{    
-    
-    //     console.log(song)        
-    //     song.push(pistas)
-    //     console.log(song)
-        
-    //     if(!isNaN(nom) || isNaN(tiempo)){
-    //         alert('uno de los valores ingresados es incorrecto')
-    //     }else{
-    //         seguir = confirm('Desea seguir ingresando canciones al disco?')
-    //     }
-        
-    // }while(!isNaN(nom) || isNaN(tiempo) || seguir !== false)
+    console.log(discos)
 };
 
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
-    let html = '';
-    console.log(discos)
+    let html;
     // Cositas:
-    discos.map((e)=>{
-        html = `${e}`
-    })
+    for(let disco of discos){
+        html += disco.GetPistas()
+    }
+    
 
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá

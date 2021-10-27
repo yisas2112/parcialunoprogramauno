@@ -1,11 +1,11 @@
-class Discos {    
-    
+class Discos {
     #pistas = []
-    static id = 0;
-    constructor(nomDisco,autor){
-        Discos.id++; 
+    
+    constructor(id, nomDisco,autor){
+        this.id = id
         this.nomDisco = nomDisco;
         this.autor = autor;
+        
         
     }
 
@@ -34,9 +34,18 @@ class Discos {
        }while(!isNaN(nombre) || isNaN(duracion) || seguir == true)
     };
 
-    GetPistas(){
-        return  Discos.id, this.nomDisco, this.autor
-
+    GetPistas(){      
+            let html = '';
+            html += `<h2>Autor: ${this.autor}<h2/>
+            <h2>Nombre del Disco: ${this.nomDisco}<h2/>
+            <ul>
+            `
+            for (let pista of this.#pistas) {
+                html += `<li>Tema: ${pista.nombre}</li>
+                        <li>Duración: ${pista.duracion}</li>`;
+            }
+            return html;
+       
     }
 
     
