@@ -49,33 +49,33 @@ const Cargar = () => {
     let autor;
     let flag = false
     let id;  
-    let mensaje;
-    let existe = false;
+    let mensaje;    
+    
     do{
+
+        flag = false
         id = parseInt(prompt('Ingrese Código del Disco'))
-        for(let disco of discos){
-            console.log(disco.id,id)
-            if(disco.id == id){                
+        console.log(id)
+        for(let disco of discos){                                    
+            if(disco.id == id){                                
                 mensaje = 'El código único ingresado ya existe'
                 flag = true
-                console.log(flag)
                 alert(mensaje)
-            }else{
-            flag = false         
-            console.log(flag)    
             }
         }
         if(id < 1 || id > 999){                    
+            console.log(flag)
             mensaje = 'El código debe estar entre 1 y 999'
             flag = true
             alert(mensaje)
-            console.log(flag)
-        }else{
-            flag = false
-        }
-        console.log(flag)
+            
+        }else if(isNaN(id)){
+            mensaje = 'El código no puede estar vacío'
+            flag = true
+            alert(mensaje)
+        }        
     }while(flag == true)
-    do{ 
+    do{
         if(flag){
             mensaje ='uno de los valores ingresados es incorrecto'
             alert(mensaje)
@@ -91,21 +91,24 @@ const Cargar = () => {
     disco.establecerPistas();
 
     discos.push(disco)
-    
-
-    console.log(discos)
+    console.log(disco)
 };
 
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
-    let html;
+    let html = '';
     // Cositas:
     for(let disco of discos){
+        console.log(discos)
+        html += `
+                <h2>Autor: ${disco.autor}</h2>
+                <h2>Nombre del Disco: ${disco.nomDisco}</h2>                
+            `
         html += disco.GetPistas()
     }
     
-
+    console.log(html)
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá
 };

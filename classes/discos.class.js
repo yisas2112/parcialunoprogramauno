@@ -36,13 +36,17 @@ class Discos {
 
     GetPistas(){      
             let html = '';
-            html += `<h2>Autor: ${this.autor}<h2/>
-            <h2>Nombre del Disco: ${this.nomDisco}<h2/>
-            <ul>
-            `
+            let duracionAlbum = 0;
             for (let pista of this.#pistas) {
-                html += `<li>Tema: ${pista.nombre}</li>
-                        <li>Duración: ${pista.duracion}</li>`;
+                duracionAlbum += pista.duracion 
+                html += `
+                        <ul>
+                        <li>Tema: ${pista.nombre}</li>
+                        <li>Duración: ${pista.duracion}</li>
+                        </ul>
+                        <h3>Duración Total del Album: <span style="color: ${duracionAlbum >= 180 ? 'red':'green'};" >${duracionAlbum}</span> minutos</h3>`;
+                
+                        
             }
             return html;
        
