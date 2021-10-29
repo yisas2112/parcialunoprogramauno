@@ -49,33 +49,34 @@ const Cargar = () => {
     let autor;
     let flag = false
     let id;  
-    let mensaje;
-    let existe = false;
+    let mensaje;    
+
+    do{
+        flag = false
+        id = parseInt(prompt('Ingrese Código del Disco'))
+        for(let disco of discos){                        
+            if(disco.id == id){                                
+                mensaje = 'El código único ingresado ya existe'
+                flag = true
+                alert(mensaje)
+                
+            }
+        }
+        if(id < 1 || id > 999){                    
+            console.log(flag)
+            mensaje = 'El código debe estar entre 1 y 999'
+            flag = true
+            alert(mensaje)
+            console.log(flag)
+        }
+        console.log(flag)
+    }while(flag == true)
+    flag = false
     do{ 
         if(flag){
             mensaje ='uno de los valores ingresados es incorrecto'
             alert(mensaje)
         }
-        do{
-            id = parseInt(prompt('Ingrese Código del Disco'))
-            for(let disco of discos){
-                console.log(disco)
-                if(disco.id == id){                
-                    mensaje = 'El código único ingresado ya existe'
-                    existe = true
-                    alert(mensaje)
-                }
-                existe = false
-            }
-            if(id < 1 || id > 999){                    
-                mensaje = 'El código debe estar entre 1 y 999'
-                flag = true
-                alert(mensaje)
-            }else{
-                
-            }   
-        }while(existe == true || flag == true)
-
         nombreDisco = prompt('Ingrese Nombre de Disco');
         autor = prompt('Ingrese nombre del Autor');    
         
