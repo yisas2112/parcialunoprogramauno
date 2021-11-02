@@ -52,46 +52,47 @@ const Cargar = () => {
     let mensaje;    
     
     do{
-
         flag = false
         id = parseInt(prompt('Ingrese Código del Disco'))
         console.log(id)
         for(let disco of discos){                                    
             if(disco.id == id){                                
                 mensaje = 'El código único ingresado ya existe'
-                flag = true
-                alert(mensaje)
+                flag = true                
             }
         }
-        if(id < 1 || id > 999){                    
-            console.log(flag)
+        if(id < 1 || id > 999){                                
             mensaje = 'El código debe estar entre 1 y 999'
             flag = true
-            alert(mensaje)
-            
         }else if(isNaN(id)){
             mensaje = 'El código no puede estar vacío'
-            flag = true
-            alert(mensaje)
+            flag = true            
         }        
+        flag ? alert(mensaje) : ''
     }while(flag == true)
-    do{
-        if(flag){
-            mensaje ='uno de los valores ingresados es incorrecto'
-            alert(mensaje)
-        }
-        nombreDisco = prompt('Ingrese Nombre de Disco');
-        autor = prompt('Ingrese nombre del Autor');    
-        
-        flag = true        
-    }while((!isNaN(nombreDisco) || !isNaN(autor)) || isNaN(id))
     
+    do{
+        flag = false        
+        autor = prompt('Ingrese nombre del Autor/Banda');    
+        nombreDisco = prompt('Ingrese Nombre de Disco');
+        
+        if(autor == '' || nombreDisco == ''){            
+            console.log(autor,nombreDisco)
+            mensaje = 'Los campos no pueden estar vacíos'            
+            flag = true
+        }else if(!isNaN(autor)|| !isNaN(nombreDisco)){            
+            mensaje = 'Valor/es incorrecto/s'
+            flag = true            
+        }
 
+        flag ? alert(mensaje) : ''
+        
+    }while(flag == true)
+    
     let disco = new Discos(id, nombreDisco, autor)
     disco.establecerPistas();
 
-    discos.push(disco)
-    console.log(disco)
+    discos.push(disco)    
 };
 
 // Función Mostrar:
@@ -106,9 +107,8 @@ const Mostrar = () => {
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>                
             `
         html += disco.GetPistas()
-    }
+    }    
     
-    console.log(html)
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá
 };
