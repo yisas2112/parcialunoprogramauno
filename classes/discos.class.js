@@ -52,6 +52,7 @@ class Discos {
             let html = '';
             let duracionAlbum = 0;
             let contador = 0
+            
             for (let pista of this.#pistas) {
                 duracionAlbum += pista.duracion
                 contador++                
@@ -60,9 +61,30 @@ class Discos {
                         <li>${contador}- Título: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
                         </ul>`
             }
-            html += `<h3>Duración Total del Album: ${duracionAlbum} segundos</h3>`;
-            return html;
-       
+            let minutos = Math.floor(duracionAlbum/60)
+            let segundos = duracionAlbum - minutos * 60
+            html += `<br>
+                <h3>Duración Total del Album: ${minutos} minutos, ${segundos} segundos</h3>
+                <br>`;
+            return html;       
+    }
+
+    GetPromedio(){
+        let html = ''
+        let suma = 0
+        let promedio = 0
+        let contador = 0
+        for (let pista of this.#pistas) {            
+            suma += pista.duracion
+            contador++
+            promedio = suma / contador        
+        html += `
+                    <h3>Promedio de duración de los temas del albúm ${pista.nomDisco}: ${promedio}</h3>`
+        }
+        
+
+        return html
+
     }
 
     

@@ -114,3 +114,12 @@ const Mostrar = () => {
 };
 
 // Todas las funciones que necesites:
+
+const Estadisticas = ()=>{
+    let html = ''
+    for(let disco of discos){
+        html += disco.GetPromedio()        
+    }    
+
+    document.getElementById('stats').innerHTML = html; // <--- ahí es acá
+}
