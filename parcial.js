@@ -1,46 +1,51 @@
 'use strict';
 
 /*
- * APELLIDO, NOMBRE | APELLIDO, NOMBRE
+ * RODRIGUEZ, JESÚS | RODRIGUEZ, JESÚS
  */
 
 // Ejemplo de la estructura de un disco:
-// let disco = {
-//     Nombre: 'El lado oscuro de la Programación',
-//     Autor: 'Los Programadores Anónimos',
-//     Codigo: 1,
-//     Pistas: [
-//         {
-//             Nombre: 'Esa cajita loca llamada variablecita',
-//             Duracion: 200,
-//         },
-//         {
-//             Nombre: 'Nunca quise ser un NaN',
-//             Duracion: 180,
-//         },
-//         {
-//             Nombre: 'No quiero programar',
-//             Duracion: 90,
-//         },
-//         {
-//             Nombre: 'Bajo presión',
-//             Duracion: 240,
-//         },
-//         {
-//             Nombre: 'La odisea de las variables privadas',
-//             Duracion: 120,
-//         },
-//         {
-//             Nombre: 'Sr. Programador',
-//             Duracion: 720,
-//         },
-//     ],
-// };
+let disco = {
+    Nombre: 'El lado oscuro de la Programación',
+    Autor: 'Los Programadores Anónimos',
+    Codigo: 1,
+    Pistas: [
+        {
+            Nombre: 'Esa cajita loca llamada variablecita',
+            Duracion: 200,
+        },
+        {
+            Nombre: 'Nunca quise ser un NaN',
+            Duracion: 180,
+        },
+        {
+            Nombre: 'No quiero programar',
+            Duracion: 90,
+        },
+        {
+            Nombre: 'Bajo presión',
+            Duracion: 240,
+        },
+        {
+            Nombre: 'La odisea de las variables privadas',
+            Duracion: 120,
+        },
+        {
+            Nombre: 'Sr. Programador',
+            Duracion: 720,
+        },
+    ],
+};
 
 
 
 // Discos:
 let discos = [];
+
+//PARA PROBAR FUNCIÓN MOSTRAR
+let discos = [disco];
+
+
 
 // Función Cargar:
 const Cargar = () => {
@@ -104,9 +109,14 @@ const Mostrar = () => {
         console.log(discos)
         html += `
                 <h2>Autor: ${disco.autor}</h2>
-                <h2>Nombre del Disco: ${disco.nomDisco}</h2>                
-            `
+                <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
         html += disco.GetPistas()
+        
+        //PARA PROBAR
+        // html += `
+        // <h2>Autor: ${disco.Autor}</h2>
+        // <h2>Nombre del Disco: ${disco.Nombre}</h2>`
+       
     }    
     
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:

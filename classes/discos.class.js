@@ -76,15 +76,11 @@ class Discos {
         let contador = 0
         for (let pista of this.#pistas) {            
             suma += pista.duracion
-            contador++
-            promedio = suma / contador        
-        html += `
-                    <h3>Promedio de duración de los temas del albúm ${pista.nomDisco}: ${promedio}</h3>`
+            contador++            
+            promedio = suma / contador                
         }
-        
-
+        html += `<h3>Promedio de duración de los temas del albúm ${this.nomDisco}: ${promedio}</h3>`
         return html
-
     }
 
     
