@@ -39,8 +39,7 @@ class Discos {
             }else{
                 this.#pistas.push(song)
                 seguir = confirm('Desea seguir ingresando canciones?')                
-            }
-            console.log(this.#pistas)
+            }            
             
             flag ? alert(mensaje): ''
 
@@ -58,13 +57,13 @@ class Discos {
                 contador++                
                 html += `
                         <ul>
-                        <li>${contador}- Título: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
+                        <li>${contador} - Título: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
                         </ul>`
             }
-            let minutos = Math.floor(duracionAlbum/60)
-            let segundos = duracionAlbum - minutos * 60
+            let tiempo =  this.SegundoToMinutos(duracionAlbum)
+            
             html += `<br>
-                <h3>Duración Total del Album: ${minutos} minutos, ${segundos} segundos</h3>
+                <h3>Duración Total del Album: ${tiempo.min} minutos, ${tiempo.seg} segundos</h3>
                 <br>`;
             return html;       
     }
@@ -79,9 +78,31 @@ class Discos {
             contador++            
             promedio = suma / contador                
         }
-        html += `<h3>Promedio de duración de los temas del albúm ${this.nomDisco}: ${promedio}</h3>`
+
+        let tiempoPromedio = this.SegundoToMinutos(promedio)
+        html += `<h3>Promedio de duración de los temas del albúm ${this.nomDisco}: ${tiempoPromedio.min} minutos ${tiempoPromedio.seg} segundos</h3>`
         return html
     }
 
-    
+    SegundoToMinutos(segundo){
+        let minutos = Math.floor(segundo/60)
+        let second = segundo - minutos * 60
+
+        return {
+            min : minutos,
+            seg: second
+        }
+    }
+
+    PistaConMayorDura(){        
+        let elegido;
+        let pistaMax = 0;
+
+        for(let pista of this.#pistas){
+            pista.duracion > pistaMax ? elegido = pista: elegido = elegido
+
+
+        }        
+        return elegido
+    }
 }

@@ -5,37 +5,37 @@
  */
 
 // Ejemplo de la estructura de un disco:
-let disco = {
-    Nombre: 'El lado oscuro de la Programación',
-    Autor: 'Los Programadores Anónimos',
-    Codigo: 1,
-    Pistas: [
-        {
-            Nombre: 'Esa cajita loca llamada variablecita',
-            Duracion: 200,
-        },
-        {
-            Nombre: 'Nunca quise ser un NaN',
-            Duracion: 180,
-        },
-        {
-            Nombre: 'No quiero programar',
-            Duracion: 90,
-        },
-        {
-            Nombre: 'Bajo presión',
-            Duracion: 240,
-        },
-        {
-            Nombre: 'La odisea de las variables privadas',
-            Duracion: 120,
-        },
-        {
-            Nombre: 'Sr. Programador',
-            Duracion: 720,
-        },
-    ],
-};
+// let disco = {
+//     Nombre: 'El lado oscuro de la Programación',
+//     Autor: 'Los Programadores Anónimos',
+//     Codigo: 1,
+//     Pistas: [
+//         {
+//             Nombre: 'Esa cajita loca llamada variablecita',
+//             Duracion: 200,
+//         },
+//         {
+//             Nombre: 'Nunca quise ser un NaN',
+//             Duracion: 180,
+//         },
+//         {
+//             Nombre: 'No quiero programar',
+//             Duracion: 90,
+//         },
+//         {
+//             Nombre: 'Bajo presión',
+//             Duracion: 240,
+//         },
+//         {
+//             Nombre: 'La odisea de las variables privadas',
+//             Duracion: 120,
+//         },
+//         {
+//             Nombre: 'Sr. Programador',
+//             Duracion: 720,
+//         },
+//     ],
+// };
 
 
 
@@ -43,7 +43,7 @@ let disco = {
 let discos = [];
 
 //PARA PROBAR FUNCIÓN MOSTRAR
-let discos = [disco];
+//let discos = [disco];
 
 
 
@@ -59,7 +59,7 @@ const Cargar = () => {
     do{
         flag = false
         id = parseInt(prompt('Ingrese Código del Disco'))
-        console.log(id)
+        
         for(let disco of discos){                                    
             if(disco.id == id){                                
                 mensaje = 'El código único ingresado ya existe'
@@ -81,8 +81,7 @@ const Cargar = () => {
         autor = prompt('Ingrese nombre del Autor/Banda');    
         nombreDisco = prompt('Ingrese Nombre de Disco');
         
-        if(autor == '' || nombreDisco == ''){            
-            console.log(autor,nombreDisco)
+        if(autor == '' || nombreDisco == ''){                        
             mensaje = 'Los campos no pueden estar vacíos'            
             flag = true
         }else if(!isNaN(autor)|| !isNaN(nombreDisco)){            
@@ -105,8 +104,7 @@ const Mostrar = () => {
     // Variable para ir armando la cadena:
     let html = '';
     // Cositas:
-    for(let disco of discos){
-        console.log(discos)
+    for(let disco of discos){        
         html += `
                 <h2>Autor: ${disco.autor}</h2>
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
@@ -132,4 +130,18 @@ const Estadisticas = ()=>{
     }    
 
     document.getElementById('stats').innerHTML = html; // <--- ahí es acá
+}
+
+const ObtenerPistaMaxima = ()=>{
+    let html = ''
+    for(let disco of discos){
+        let pistaMax = disco.PistaConMayorDura()
+        console.log(pistaMax)
+        html += `La Pista de Mayor duración del Album: ${pistaMax.nomDisco} del Autor/Album: ${pistaMax.autor} es:`
+    }
+    
+    
+    document.getElementById('stats').innerHTML = html; // <--- ahí es acá
+
+
 }
