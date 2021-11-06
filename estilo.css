@@ -59,11 +59,14 @@ h2 {
     font-size: 3em;
     color: #134F5C;
 }
-h3, span {
+h3, span  {
     font-size: 2em;
     color: #134F5C;
 }
-
+b{
+    font-size: 1.2em;
+    color: #134F5C;
+}
 /** Main */
 main {
     display: flex;

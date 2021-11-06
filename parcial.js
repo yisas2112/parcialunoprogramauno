@@ -3,48 +3,49 @@
 /*
  * RODRIGUEZ, JESÚS | RODRIGUEZ, JESÚS
  */
-
-// Ejemplo de la estructura de un disco:
-// let disco = {
-//     Nombre: 'El lado oscuro de la Programación',
-//     Autor: 'Los Programadores Anónimos',
-//     Codigo: 1,
-//     Pistas: [
-//         {
-//             Nombre: 'Esa cajita loca llamada variablecita',
-//             Duracion: 200,
-//         },
-//         {
-//             Nombre: 'Nunca quise ser un NaN',
-//             Duracion: 180,
-//         },
-//         {
-//             Nombre: 'No quiero programar',
-//             Duracion: 90,
-//         },
-//         {
-//             Nombre: 'Bajo presión',
-//             Duracion: 240,
-//         },
-//         {
-//             Nombre: 'La odisea de las variables privadas',
-//             Duracion: 120,
-//         },
-//         {
-//             Nombre: 'Sr. Programador',
-//             Duracion: 720,
-//         },
-//     ],
-// };
-
-
-
 // Discos:
 let discos = [];
 
-//PARA PROBAR FUNCIÓN MOSTRAR
-//let discos = [disco];
 
+//-----------------------------------------------------------------------
+//PARA PROBAR
+//Ejemplo de la estructura de un disco:
+// let nomDisco=  'El lado oscuro de la Programación';
+// let autor = 'Los Programadores Anónimos';
+// let id=  1;
+// let pistas =[
+//         {
+//             nombre: 'Esa cajita loca llamada variablecita',
+//             duracion: 200,
+//         },
+//         {
+//             nombre: 'Nunca quise ser un NaN',
+//             duracion: 180,
+//         },
+//         {
+//             nombre: 'No quiero programar',
+//             duracion: 90,
+//         },
+//         {
+//             nombre: 'Bajo presión',
+//             duracion: 240,
+//         },
+//         {
+//             nombre: 'La odisea de las variables privadas',
+//             duracion: 120,
+//         },
+//         {
+//             nombre: 'Sr. Programador',
+//             duracion: 720,
+//         },
+//     ];
+
+// let disco = new Discos(id, nomDisco, autor)
+
+// disco.establecerPistas(pistas)
+
+// discos.push(disco)
+//-----------------------------------------------------------------------
 
 
 // Función Cargar:
@@ -104,18 +105,13 @@ const Mostrar = () => {
     // Variable para ir armando la cadena:
     let html = '';
     // Cositas:
-    for(let disco of discos){        
+    for(let disco of discos){         
         html += `
                 <h2>Autor: ${disco.autor}</h2>
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
         html += disco.GetPistas()
-        
-        //PARA PROBAR
-        // html += `
-        // <h2>Autor: ${disco.Autor}</h2>
-        // <h2>Nombre del Disco: ${disco.Nombre}</h2>`
-       
     }    
+      
     
     // Si modificaste el nombre de la variable para ir armando la cadena, también hacelo acá:
     document.getElementById('info').innerHTML = html; // <--- ahí es acá
@@ -133,15 +129,37 @@ const Estadisticas = ()=>{
 }
 
 const ObtenerPistaMaxima = ()=>{
-    let html = ''
-    for(let disco of discos){
-        let pistaMax = disco.PistaConMayorDura()
-        console.log(pistaMax)
-        html += `La Pista de Mayor duración del Album: ${pistaMax.nomDisco} del Autor/Album: ${pistaMax.autor} es:`
+    let html = ''    
+    for(let disco of discos){            
+        html += disco.PistaConMayorDura()
     }
-    
-    
     document.getElementById('stats').innerHTML = html; // <--- ahí es acá
+}
 
-
+const BuscarAlbum = ()=>{
+    let html = ''
+    let flag = false
+    let id;
+    let mensaje = ''
+    do{
+        flag = false        
+        id = parseInt(prompt('Ingrese código del album'))
+        if(isNaN(id)){
+            mensaje = 'El código tiene que ser un número'            
+            flag = true            
+        }
+        flag ? alert(mensaje) : ''
+    }while(flag == true)
+    
+    let resultado =  discos.filter(e => discos.id = id)
+    
+    resultado.map(e=>{
+        console.log(e)
+        html += `
+                <h2>Autor: ${e.autor}</h2>
+                <h2>Nombre del Disco: ${e.nomDisco}</h2>`
+            html += e.GetPistas()
+                
+    })
+    document.getElementById('info').innerHTML = html; // <--- ahí es acá
 }

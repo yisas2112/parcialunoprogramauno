@@ -1,12 +1,17 @@
 class Discos {
     #pistas = []
     
+    
+    //------------------------------------
+    //PARA PROBAR
+    //#pistas;
+    //------------------------------------
+
+    
     constructor(id, nomDisco,autor){
         this.id = id
         this.nomDisco = nomDisco;
         this.autor = autor;
-        
-        
     }
 
     establecerPistas(){        
@@ -42,22 +47,29 @@ class Discos {
             }            
             
             flag ? alert(mensaje): ''
-
-       }while(flag == true || seguir == true)
+    }while(flag == true || seguir == true)
     
     };
+
+    //PRUEBA
+    //-----------------------------------------------------------------------
+    // establecerPistas(pistas){
+    //     this.#pistas = pistas
+    // }
+    //-----------------------------------------------------------------------
+
 
     GetPistas(){      
             let html = '';
             let duracionAlbum = 0;
             let contador = 0
             
-            for (let pista of this.#pistas) {
+            for (let pista of this.#pistas) {                
                 duracionAlbum += pista.duracion
                 contador++                
                 html += `
                         <ul>
-                        <li>${contador} - Título: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
+                        <li>${contador} - Nombre: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
                         </ul>`
             }
             let tiempo =  this.SegundoToMinutos(duracionAlbum)
@@ -86,7 +98,7 @@ class Discos {
 
     SegundoToMinutos(segundo){
         let minutos = Math.floor(segundo/60)
-        let second = segundo - minutos * 60
+        let second = Math.round(segundo - minutos * 60)
 
         return {
             min : minutos,
@@ -94,15 +106,14 @@ class Discos {
         }
     }
 
-    PistaConMayorDura(){        
-        let elegido;
-        let pistaMax = 0;
+    PistaConMayorDura(){                        
+        let html = ''
 
+        let pistaMax = Math.max.apply(Math, this.#pistas.map(e => e.duracion))        
         for(let pista of this.#pistas){
-            pista.duracion > pistaMax ? elegido = pista: elegido = elegido
-
-
-        }        
-        return elegido
+        html = `<h3>La Pista de Mayor duración del album <b>${this.nomDisco}</b> del autor <b>${this.autor}</b> es: nombre: ${pista.nombre} duración: ${pistaMax}</h3>` 
+        }
+        
+        return html
     }
 }
