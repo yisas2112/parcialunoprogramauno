@@ -77,6 +77,8 @@ class Discos {
             html += `<br>
                 <h3>Duración Total del Album: ${tiempo.min} minutos, ${tiempo.seg} segundos</h3>
                 <br>`;
+
+            html += this.GetPromedio()
             return html;       
     }
 
@@ -92,7 +94,7 @@ class Discos {
         }
 
         let tiempoPromedio = this.SegundoToMinutos(promedio)
-        html += `<h3>Promedio de duración de los temas del albúm ${this.nomDisco}: ${tiempoPromedio.min} minutos ${tiempoPromedio.seg} segundos</h3>`
+        html += `<h3>Promedio de duración del albúm: ${tiempoPromedio.min} minutos ${tiempoPromedio.seg} segundos</h3>`
         return html
     }
 

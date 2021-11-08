@@ -119,15 +119,6 @@ const Mostrar = () => {
 
 // Todas las funciones que necesites:
 
-const Estadisticas = ()=>{
-    let html = ''
-    for(let disco of discos){
-        html += disco.GetPromedio()        
-    }    
-
-    document.getElementById('stats').innerHTML = html; // <--- ahí es acá
-}
-
 const ObtenerPistaMaxima = ()=>{
     let html = ''    
     for(let disco of discos){            
@@ -150,12 +141,19 @@ const BuscarAlbum = ()=>{
         }
         flag ? alert(mensaje) : ''
     }while(flag == true)
+
+    let resultado =  discos.filter(e =>{
+        if(e.id == id){
+            return e
+        }
+     })
+
+    resultado.length == 0 ?  alert('No existe existe el código') : ''
     
-    let resultado =  discos.filter(e => discos.id = id)
-    
+    console.log(resultado)
     resultado.map(e=>{
         console.log(e)
-        html += `
+        html = `
                 <h2>Autor: ${e.autor}</h2>
                 <h2>Nombre del Disco: ${e.nomDisco}</h2>`
             html += e.GetPistas()
