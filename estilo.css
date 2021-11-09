@@ -264,3 +264,8 @@ main button:hover {
     }
 
 }
+
+#pista__mayor{
+    width: 70%;
+    margin: 30px 0;
+}

@@ -1,19 +1,14 @@
 class Discos {
+    //Variable privada de la clase
     #pistas = []
-    
-    
-    //------------------------------------
-    //PARA PROBAR
-    //#pistas;
-    //------------------------------------
-
-    
+    //Constructor para inicializar la clase
     constructor(id, nomDisco,autor){
         this.id = id
         this.nomDisco = nomDisco;
         this.autor = autor;
     }
 
+    //Función que establece las pistas del albúm
     establecerPistas(){        
         let nombre = '';
         let duracion = 0;
@@ -51,14 +46,14 @@ class Discos {
     
     };
 
-    //PRUEBA
+    //Función que establece las pistas de prueba
     //-----------------------------------------------------------------------
-    // establecerPistas(pistas){
-    //     this.#pistas = pistas
-    // }
+    establecerPistasTest(pistas){
+        this.#pistas = pistas
+    }
     //-----------------------------------------------------------------------
 
-
+    //Getter de las pistas
     GetPistas(){      
             let html = '';
             let duracionAlbum = 0;
@@ -81,7 +76,7 @@ class Discos {
             html += this.GetPromedio()
             return html;       
     }
-
+    // Get Promedio de las pistas por albúm
     GetPromedio(){
         let html = ''
         let suma = 0
@@ -97,7 +92,7 @@ class Discos {
         html += `<h3>Promedio de duración del albúm: ${tiempoPromedio.min} minutos ${tiempoPromedio.seg} segundos</h3>`
         return html
     }
-
+    //Función para pasar de segundos a minutos y segundo
     SegundoToMinutos(segundo){
         let minutos = Math.floor(segundo/60)
         let second = Math.round(segundo - minutos * 60)
@@ -107,13 +102,16 @@ class Discos {
             seg: second
         }
     }
-
+    //Getter de Promedio de Duración por albúm
     PistaConMayorDura(){                        
         let html = ''
 
-        let pistaMax = Math.max.apply(Math, this.#pistas.map(e => e.duracion))        
+        let pistaMax = Math.max.apply(Math, this.#pistas.map(e => e.duracion))  
+        let toMinut = this.SegundoToMinutos(pistaMax)
         for(let pista of this.#pistas){
-        html = `<h3>La Pista de Mayor duración del album <b>${this.nomDisco}</b> del autor <b>${this.autor}</b> es: nombre: ${pista.nombre} duración: ${pistaMax}</h3>` 
+        html = `<div id= 'pista__mayor'>
+                <h3>La pista de mayor duración del album <b>${this.nomDisco}</b> del autor <b>${this.autor}</b> es <b>${pista.nombre}</b> con una duración de ${toMinut.min} minutos ${toMinut.seg} segundos</h3>
+                </div>` 
         }
         
         return html
