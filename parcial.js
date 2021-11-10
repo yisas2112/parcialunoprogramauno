@@ -78,7 +78,8 @@ disco1.establecerPistasTest(pistas1)
 
 discos.push(disco)
 discos.push(disco1)
-console.log(discos)  
+
+
 //-----------------------------------------------------------------------
 
 
@@ -136,44 +137,29 @@ const Cargar = () => {
     let disco = new Discos(id, nombreDisco, autor)
     //A objeto se le asignarán las pistas correspondientes
     disco.establecerPistas();
-    
     //Por último se pushea al array de discos
-    discos.push(disco)  
-
-    let prueba = []
-    for(let disco of discos){
-        prueba.push(disco)
-    }
-
-    console.log(prueba)
+    discos.push(disco)    
 };
 
 // Función Mostrar:
 const Mostrar = () => {
-    // Variable para ir armando la cadena:
-    let prueba = {
-        nomdisk : '',
-        autor: '',
-        pistas: []
-    }
-    let html = '';    
-    //Recorro el array discos para obtener los datos    
-    for(let disco of discos){         
-        prueba.nomdisk = disco.nomDisco
-        prueba.autor = disco.autor
-
     
-
+    // Variable para ir armando la cadena:  
+    let html = '';        
+    //Recorro el array discos para obtener los datos    
+    for(let disco of discos){                 
         html += `<br>
                 <h2>Autor: ${disco.autor}</h2>
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
         //Método de la clase para obterner las pistas del albúm
         html += disco.GetPistas()
+        
     }    
     
     // Se le indica dónde se deberá mostrar la info
     document.getElementById('info').innerHTML = html; 
     document.getElementById('stats').innerHTML = ''; 
+    
     
 };
 
@@ -212,7 +198,7 @@ const BuscarAlbum = ()=>{
         if(e.id == id){
             return e
         }
-     })
+})
      //Si el código no existe mostrará un html diciendo que no existe
     resultado.length == 0 ?  html = '<h2>No existe existe el código</h2>' : '';
     
@@ -230,3 +216,5 @@ const BuscarAlbum = ()=>{
     document.getElementById('info').innerHTML = html; 
     document.getElementById('stats').innerHTML = ''; // <--- ahí es acá
 }
+
+

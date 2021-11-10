@@ -75,7 +75,7 @@ class Discos {
                 <h3>Duración Total del Album: ${tiempo.min} minutos, ${tiempo.seg} segundos</h3>
                 <br>`;
 
-            html += this.GetPromedio()
+            html += this.GetPromedio()            
             return html;       
     }
     // Get Promedio de las pistas por albúm
@@ -118,18 +118,17 @@ class Discos {
         
         return html
     }
-    SetPistasToLocal(disco){
-        console.log(disco)
-        // let prueba = []
-        // let pruebaObj = {
-        //     id : this.id,
-        //     nomDisco: this.nomDisco,
-        //     autor : this.autor,
-        //     pistas: []
+    SetPistasToLocal(disco){        
+        let prueba = []
+        let pruebaObj = {
+            id : this.id,
+            nomDisco: this.nomDisco,
+            autor : this.autor,
+            pistas: [this.#pistas]
 
-        // }
-        // pruebaObj.pistas.push(this.#pistas)
-        // prueba.push(pruebaObj)  
+        }
+        
+        prueba.push(pruebaObj)  
         
         localStorage.setItem('discos', JSON.stringify(disco));
         
