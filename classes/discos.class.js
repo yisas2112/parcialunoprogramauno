@@ -43,7 +43,9 @@ class Discos {
             
             flag ? alert(mensaje): ''
     }while(flag == true || seguir == true)
-    
+
+    return this.#pistas
+
     };
 
     //Función que establece las pistas de prueba
@@ -115,5 +117,21 @@ class Discos {
         }
         
         return html
+    }
+    SetPistasToLocal(disco){
+        console.log(disco)
+        // let prueba = []
+        // let pruebaObj = {
+        //     id : this.id,
+        //     nomDisco: this.nomDisco,
+        //     autor : this.autor,
+        //     pistas: []
+
+        // }
+        // pruebaObj.pistas.push(this.#pistas)
+        // prueba.push(pruebaObj)  
+        
+        localStorage.setItem('discos', JSON.stringify(disco));
+        
     }
 }

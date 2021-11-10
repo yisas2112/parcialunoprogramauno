@@ -134,18 +134,24 @@ const Cargar = () => {
     
     //Se crea el objeto disco
     let disco = new Discos(id, nombreDisco, autor)
-    //A objeto se le asignarán las pis correspondientes
+    //A objeto se le asignarán las pistas correspondientes
     disco.establecerPistas();
+    
     //Por último se pushea al array de discos
     discos.push(disco)  
-    
-    localStorage.setItem('discos', JSON.stringify(discos));
+
+    let prueba = []
+    for(let disco of discos){
+        prueba.push(disco)
+    }
+
+    console.log(prueba)
 };
 
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
-    let html = '';
+    let html = '';    
     //Recorro el array discos para obtener los datos    
     for(let disco of discos){         
         html += `<br>
