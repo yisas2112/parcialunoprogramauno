@@ -151,9 +151,19 @@ const Cargar = () => {
 // Función Mostrar:
 const Mostrar = () => {
     // Variable para ir armando la cadena:
+    let prueba = {
+        nomdisk : '',
+        autor: '',
+        pistas: []
+    }
     let html = '';    
     //Recorro el array discos para obtener los datos    
     for(let disco of discos){         
+        prueba.nomdisk = disco.nomDisco
+        prueba.autor = disco.autor
+
+    
+
         html += `<br>
                 <h2>Autor: ${disco.autor}</h2>
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
