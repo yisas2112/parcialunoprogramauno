@@ -1,4 +1,4 @@
-class Discos {
+class Disco {
     //Variable privada de la clase
     #pistas = []
     //Constructor para inicializar la clase
@@ -56,7 +56,7 @@ class Discos {
     //-----------------------------------------------------------------------
 
     //Getter de las pistas
-    GetPistas(){      
+    getPistas(){      
             let html = '';
             let duracionAlbum = 0;
             let contador = 0
@@ -69,17 +69,17 @@ class Discos {
                         <li>${contador} - Nombre: ${pista.nombre}, Duración: <span style="color: ${pista.duracion >= 180 ? 'red':'green'};">${pista.duracion}</span> segundos</li>                        
                         </ul>`
             }
-            let tiempo =  this.SegundoToMinutos(duracionAlbum)
+            let tiempo =  this.segundoToMinutos(duracionAlbum)
             
             html += `<br>
                 <h3>Duración Total del Album: ${tiempo.min} minutos, ${tiempo.seg} segundos</h3>
                 <br>`;
 
-            html += this.GetPromedio()            
+            html += this.getPromedio()            
             return html;       
     }
     // Get Promedio de las pistas por albúm
-    GetPromedio(){
+    getPromedio(){
         let html = ''
         let suma = 0
         let promedio = 0
@@ -90,12 +90,12 @@ class Discos {
             promedio = suma / contador                
         }
 
-        let tiempoPromedio = this.SegundoToMinutos(promedio)
+        let tiempoPromedio = this.segundoToMinutos(promedio)
         html += `<h3>Promedio de duración del albúm: ${tiempoPromedio.min} minutos ${tiempoPromedio.seg} segundos</h3>`
         return html
     }
-    //Función para pasar de segundos a minutos y segundo
-    SegundoToMinutos(segundo){
+    //Método para pasar de segundos a minutos y segundo
+    segundoToMinutos(segundo){
         let minutos = Math.floor(segundo/60)
         let second = Math.round(segundo - minutos * 60)
 
@@ -105,32 +105,18 @@ class Discos {
         }
     }
     //Getter de Promedio de Duración por albúm
-    PistaConMayorDura(){                        
-        let html = ''
-
+    pistaConMayorDura(){                        
+        let html = ''        
         let pistaMax = Math.max.apply(Math, this.#pistas.map(e => e.duracion))  
-        let toMinut = this.SegundoToMinutos(pistaMax)
+        let toMinut = this.segundoToMinutos(pistaMax)
         for(let pista of this.#pistas){
+            
         html = `<div id= 'pista__mayor'>
                 <h3>La pista de mayor duración del album <b>${this.nomDisco}</b> del autor <b>${this.autor}</b> es <b>${pista.nombre}</b> con una duración de ${toMinut.min} minutos ${toMinut.seg} segundos</h3>
                 </div>` 
-        }
-        
+        }        
         return html
     }
-    SetPistasToLocal(disco){        
-        let prueba = []
-        let pruebaObj = {
-            id : this.id,
-            nomDisco: this.nomDisco,
-            autor : this.autor,
-            pistas: [this.#pistas]
-
-        }
-        
-        prueba.push(pruebaObj)  
-        
-        localStorage.setItem('discos', JSON.stringify(disco));
-        
-    }
+    
+    
 }

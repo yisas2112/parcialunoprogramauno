@@ -1,5 +1,4 @@
 'use strict';
-
 /*
  * RODRIGUEZ, JESÚS | RODRIGUEZ, JESÚS
  */
@@ -9,7 +8,6 @@ let discos = [];
 
 //-----------------------------------------------------------------------
 //Datos Precargados para probar
-
 let nomDisco=  'A Contraluz';
 let autor = 'La Vela Puerca';
 let id=  1;
@@ -70,8 +68,8 @@ let pistas1 =[
         },
 ];
 
-let disco = new Discos(id, nomDisco, autor)
-let disco1 = new Discos(id1, nomDisco1, autor1)
+let disco = new Disco(id, nomDisco, autor)
+let disco1 = new Disco(id1, nomDisco1, autor1)
 
 disco.establecerPistasTest(pistas)
 disco1.establecerPistasTest(pistas1)
@@ -79,15 +77,14 @@ disco1.establecerPistasTest(pistas1)
 discos.push(disco)
 discos.push(disco1)
 
-
 //-----------------------------------------------------------------------
 
-
+let flag = false
 // Función Cargar: Establece los datos del Autor, Album y pistas
 const Cargar = () => {    
     let nombreDisco;    
     let autor;
-    let flag = false
+    //let flag = false
     let id;  
     //Depende del error que surga mensaje irá cambiando
     let mensaje;    
@@ -111,8 +108,9 @@ const Cargar = () => {
         }else if(isNaN(id)){
             mensaje = 'El código no puede estar vacío'
             flag = true            
-        }        
-        flag ? alert(mensaje) : ''
+        }
+        
+        flag ? alert(mensaje) : ''        
     }while(flag == true)
     
     //Nombre del Autor y Disco, ambos con validaciones
@@ -134,33 +132,28 @@ const Cargar = () => {
     }while(flag == true)
     
     //Se crea el objeto disco
-    let disco = new Discos(id, nombreDisco, autor)
+    let disco = new Disco(id, nombreDisco, autor)
     //A objeto se le asignarán las pistas correspondientes
     disco.establecerPistas();
     //Por último se pushea al array de discos
-    discos.push(disco)    
+    discos.push(disco)     
 };
 
 // Función Mostrar:
-const Mostrar = () => {
-    
+const Mostrar = () => {    
     // Variable para ir armando la cadena:  
-    let html = '';        
+    let html = '';            
     //Recorro el array discos para obtener los datos    
     for(let disco of discos){                 
         html += `<br>
                 <h2>Autor: ${disco.autor}</h2>
                 <h2>Nombre del Disco: ${disco.nomDisco}</h2>`
         //Método de la clase para obterner las pistas del albúm
-        html += disco.GetPistas()
-        
-    }    
-    
+        html += disco.getPistas()
+    }
     // Se le indica dónde se deberá mostrar la info
     document.getElementById('info').innerHTML = html; 
     document.getElementById('stats').innerHTML = ''; 
-    
-    
 };
 
 //Función para obtener la pista máxima de cada albúm
@@ -168,7 +161,7 @@ const ObtenerPistaMaxima = ()=>{
     let html = ''    
     for(let disco of discos){            
         //Método de la clase para obterner la duración máxima
-        html += disco.PistaConMayorDura()
+        html += disco.pistaConMayorDura()
     }
     // Se le indica dónde se deberá mostrar la info
     document.getElementById('stats').innerHTML = html;
@@ -200,16 +193,15 @@ const BuscarAlbum = ()=>{
         }
 })
      //Si el código no existe mostrará un html diciendo que no existe
-    resultado.length == 0 ?  html = '<h2>No existe existe el código</h2>' : '';
+    resultado.length == 0 ?  html = '<h2>No existe el código</h2>' : '';
     
     //Si el albúm buscado existe lo mostramos
-    resultado.map(e=>{
-        console.log(e)
+    resultado.map(e=>{        
         html = `
                 <h2>Autor: ${e.autor}</h2>
                 <h2>Nombre del Disco: ${e.nomDisco}</h2>`
             //Método de la clase para mostrar las pistas
-            html += e.GetPistas()
+            html += e.getPistas()
                 
     })
     //Mostramos la info en el html
